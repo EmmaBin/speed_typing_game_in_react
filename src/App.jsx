@@ -11,6 +11,8 @@ import './App.css'
 function App() {
   const [text, setText] = useState('')
   const [timeRemaining, setTimeRemaining] = useState(5)
+  const [startGame, setStartGame] = useState(false)
+  const [countWords, setCountWords] = useState(0)
 
   function handleChange(e){
     setText(e.target.value)
@@ -35,20 +37,24 @@ function App() {
   //   }
   //   }
   // },[timeRemaining])
+
   useEffect(()=>{
-    console.log('useEffect', timeRemaining)
-    if (timeRemaining>0){
+    // console.log('useEffect', timeRemaining)
+    if (startGame && timeRemaining>0){
       const timeoutId = setTimeout(()=>{
         setTimeRemaining(prev => {
-          console.log({ prev, timeRemaining })
+          // console.log({ prev, timeRemaining })
           return prev-1;
         })
       }, 1000);
       return (() => {
         clearTimeout(timeoutId);
       })
+    } else if (timeRemaining===0){
+      setStartGame(false)
+      setCountWords(wordCount(text))
     }
-  },[timeRemaining])
+  },[timeRemaining, startGame])
 
   return (
     <div>
@@ -61,8 +67,8 @@ function App() {
     
       
       <h4>Time remaining:{timeRemaining}</h4>
-      <button onClick = {()=>wordCount(text)}>Start Game</button>
-      <h1>Word Count:??</h1>
+      <button onClick = {()=>setStartGame(true)}>Start Game</button>
+      <h1>Word Count:{countWords}</h1>
 
  
     </div>
