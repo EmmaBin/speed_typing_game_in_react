@@ -6,6 +6,7 @@
  */
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { useRef } from 'react'
 import './App.css'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   const [timeRemaining, setTimeRemaining] = useState(5)
   const [startGame, setStartGame] = useState(false)
   const [countWords, setCountWords] = useState(0)
+  const textBoxRef = useRef(null)
 
   function handleChange(e){
     setText(e.target.value)
@@ -22,13 +24,14 @@ function App() {
     setTimeRemaining(5)
     setCountWords(0)
     setText('')
+    textBoxRef.current.disabled = false
+    textBoxRef.current.focus()
   }
   // 1. need to trim the empty space after the last word
   // 2. only count the word that is not empty space using filter
   function wordCount(text){
     const wordArr = text.trim().split(' ')
     const total = wordArr.filter(word => word != '').length
-    console.log(wordArr)
     return total
   }
   //When time remaining is not 0, countdown the timeRemaining
@@ -70,7 +73,9 @@ function App() {
       <textarea 
         disabled={!startGame}
         onChange = {handleChange}
-        value={text}/>
+        value={text}
+        ref = {textBoxRef}
+        />
     
       
       <h4>Time remaining:{timeRemaining}</h4>
