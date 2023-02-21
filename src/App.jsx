@@ -17,12 +17,18 @@ function App() {
   function handleChange(e){
     setText(e.target.value)
   }
-
+  function gameStart(){
+    setStartGame(true)
+    setTimeRemaining(5)
+    setCountWords(0)
+    setText('')
+  }
   // 1. need to trim the empty space after the last word
   // 2. only count the word that is not empty space using filter
   function wordCount(text){
     const wordArr = text.trim().split(' ')
-    const total = wordArr.filter(word => word != ' ').length
+    const total = wordArr.filter(word => word != '').length
+    console.log(wordArr)
     return total
   }
   //When time remaining is not 0, countdown the timeRemaining
@@ -67,7 +73,7 @@ function App() {
     
       
       <h4>Time remaining:{timeRemaining}</h4>
-      <button onClick = {()=>setStartGame(true)}>Start Game</button>
+      <button onClick = {gameStart}>Start Game</button>
       <h1>Word Count:{countWords}</h1>
 
  
