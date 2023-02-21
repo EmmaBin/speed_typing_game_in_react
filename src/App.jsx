@@ -68,12 +68,13 @@ function App() {
         Speed Typing Game
       </h1>
       <textarea 
+        disabled={!startGame}
         onChange = {handleChange}
         value={text}/>
     
       
       <h4>Time remaining:{timeRemaining}</h4>
-      <button onClick = {gameStart}>Start Game</button>
+      <button disabled={startGame} onClick = {gameStart}>Start Game</button>
       <h1>Word Count:{countWords}</h1>
 
  
