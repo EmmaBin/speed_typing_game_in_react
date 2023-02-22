@@ -1,4 +1,5 @@
 # Speed Typing Game in _React_
+## Play the game at https://inspiring-marzipan-a43a44.netlify.app/
 
 ### Features
 - useState()
