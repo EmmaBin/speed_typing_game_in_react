@@ -11,7 +11,7 @@ import './App.css'
 
 function App() {
   const [text, setText] = useState('')
-  const [timeRemaining, setTimeRemaining] = useState(5)
+  const [timeRemaining, setTimeRemaining] = useState(40)
   const [startGame, setStartGame] = useState(false)
   const [countWords, setCountWords] = useState(0)
   const textBoxRef = useRef(null)
